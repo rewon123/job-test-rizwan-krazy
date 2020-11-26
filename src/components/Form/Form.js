@@ -5,7 +5,6 @@ import { Form } from 'react-bootstrap';
 
 const FormWithImage = () => {
     const [files, setFile] = useState([]);
-    console.log(files);
     const fileHandler = event => {
         let reader = new FileReader();
         reader.onload = function (e) {
@@ -15,6 +14,12 @@ const FormWithImage = () => {
         };
         reader.readAsDataURL(event.target.files[0]);
     };
+    const deleteImg = elem => {
+        const index = files.indexOf(elem);
+        files.splice(index, 1);
+        console.log(index);
+        alert('your item has removed form the list upload a another image and it will be gone : )')
+    }
 
     return (
         <div>
@@ -53,16 +58,16 @@ const FormWithImage = () => {
                 <div className="col-md-6">
                     {
                         files.map(file =>
-                            <div class="card mb-3">
-                                <div class="row no-gutters">
-                                    <div class="col-md-8">
-                                        <img src={file} class="card-image" style={{ width: '100%' }} alt="..." />
+                            <div  key={file} className="card mb-3">
+                                <div className="row no-gutters">
+                                    <div className="col-md-8">
+                                        <img src={file} className="card-image" style={{ width: '100%' }} alt="..." />
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Card title</h5>
-                                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    <div className="col-md-4">
+                                        <div className="card-body">
+                                            <h5 className="card-title">Card title</h5>
+                                            <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                            <button onClick={() => deleteImg(file)} className='btn btn-danger'> Delete </button>
                                         </div>
                                     </div>
                                 </div>
