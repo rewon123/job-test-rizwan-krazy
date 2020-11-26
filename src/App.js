@@ -1,24 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import LandingPage from './components/LandingPage/LandingPage';
+import FormWithImage from './components/Form/Form';
+import TShirt from './components/T-shirt/tShirt';
+import Header from './components/LandingPage/Header/Header';
+
+// it is a project for testing us, so i am declaring the route and component names as given in the doc file  
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Switch>
+
+          <Route path='/landingPage' >
+            <LandingPage></LandingPage>
+          </Route>
+
+          <Route path='/theFormPart' >
+            <Header />
+            <FormWithImage></FormWithImage>
+          </Route>
+
+          <Route path='/T-shirt' >
+            <Header />
+            <TShirt></TShirt>
+          </Route>
+
+          <Route exact path='/' >
+            <LandingPage></LandingPage>
+          </Route>
+          <Route exact path='*' >
+            <Header />
+            <h2>page not found</h2>
+          </Route>
+
+        </Switch>
+      </Router>
+
+    </>
   );
 }
 
